@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  thi_sinh_id: 1
+  de_thi_id: 1
+  thoi_gian_bat_dau: 2014-10-27 00:39:35
+  thoi_gian_ket_thuc: 2014-10-27 00:39:35
+
+two:
+  thi_sinh_id: 1
+  de_thi_id: 1
+  thoi_gian_bat_dau: 2014-10-27 00:39:35
+  thoi_gian_ket_thuc: 2014-10-27 00:39:35

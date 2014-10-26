@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cau_hoi_id: 1
+  thi_id: 1
+  tra_loi: 1
+
+two:
+  cau_hoi_id: 1
+  thi_id: 1
+  tra_loi: 1

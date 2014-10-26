@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  noi_dung: MyText
+  a: MyText
+  b: MyText
+  c: MyText
+  d: MyText
+
+two:
+  noi_dung: MyText
+  a: MyText
+  b: MyText
+  c: MyText
+  d: MyText

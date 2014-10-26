@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mon_thi_id: 1
+  ngay_tao: 2014-10-27
+
+two:
+  mon_thi_id: 1
+  ngay_tao: 2014-10-27

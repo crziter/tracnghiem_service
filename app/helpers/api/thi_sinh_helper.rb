@@ -1,0 +1,2 @@
+module Api::ThiSinhHelper
+end

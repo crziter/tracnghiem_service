@@ -1,0 +1,2 @@
+module Api::CauHoiHelper
+end
