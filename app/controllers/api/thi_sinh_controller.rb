@@ -21,6 +21,22 @@ class Api::ThiSinhController < ApplicationController
     end
   end
 
+  def dang_xuat
+    begin
+      ts_json = JSON.parse(request.raw_post)
+      sess = SignIn.where(token: ts_json['token']).first
+      if sess == nil
+        raise 'Token not found'
+      end
+
+      sess.destroy
+
+      return_obj :status => :ok
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
+
   def index
     @tss = ThiSinh.all
     return_obj @tss

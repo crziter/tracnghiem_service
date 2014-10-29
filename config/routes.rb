@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     resources :de_thi
     resources :cau_hoi
     resources :thi
+    resources :dap_an
 
     post  '/thi_sinh/dang_nhap'   => 'thi_sinh#dang_nhap'
+    post  '/thi_sinh/dang_xuat'   => 'thi_sinh#dang_xuat'
 
     get   '/de_thi/:id/list'      => 'de_thi#list_by_mon_thi'
 
@@ -15,7 +17,10 @@ Rails.application.routes.draw do
 
     get   '/cau_hoi/:id/list'     => 'cau_hoi#list_by_de_thi'
 
-    post '/thi/status'            => 'thi#bat_dau_thi'
+    post '/thi/begin'             => 'thi#bat_dau_thi'
+    post '/thi/end'               => 'thi#thi_xong'
+    get  '/thi/diem/:id'          => 'thi#diem'
+    get  '/thi/ket_qua/:id'         => 'thi#check_result'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def return_obj(obj)
     respond_to do |format|
       format.json { render json: obj }
-      format.json { render json: obj }
+      format.xml { render xml: obj }
     end
   end
 end
