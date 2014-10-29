@@ -4,7 +4,7 @@ class Api::ThiSinhController < ApplicationController
     @ts = ThiSinh.where(ten_dang_nhap: ts_json['ten_dang_nhap'], mat_khau: ts_json['mat_khau'], active: true).first
 
     if @ts == nil
-      return_obj :status => :fail, :reason => 'invalid information'
+      return_obj :status => :fail, :reason => 'invalid information or deactived user'
     else
       begin
         token = SecureRandom.uuid
