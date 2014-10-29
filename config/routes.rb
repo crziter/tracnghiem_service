@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :mon_thi
+    resources :thi_sinh
+
+    post '/thi_sinh/dang_nhap' => 'thi_sinh#dang_nhap'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
