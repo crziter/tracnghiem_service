@@ -58,6 +58,7 @@ class Api::ThiSinhController < ApplicationController
       @ts.mat_khau      = ts_json['mat_khau']
       @ts.ten_that      = ts_json['ten_that']
       @ts.email         = ts_json['email']
+      @ts.active        = ts_json['active']
 
       if @ts.ten_dang_nhap == nil || @ts.mat_khau == nil || @ts.ten_that = nil || @ts.email == nil
         raise 'invalid information'
@@ -82,6 +83,51 @@ class Api::ThiSinhController < ApplicationController
 
       ts.active = false
       ts.save
+
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
+
+  def update
+    begin
+      ts_id = params[:id]
+      ts_json = JSON.parse(request.raw_post)
+      ts = ThiSinh.where(id: ts_id).first
+
+      if ts == nil
+        raise 'ThiSinh not found'
+      end
+
+      tdn = ts_json['ten_dang_nhap']
+      mk = ts_json['mat_khau']
+      tt = ts_json['ten_that']
+      em = ts_json['email']
+      at = ts_json['active']
+
+      if tdn != nil
+        ts.ten_dang_nhap = tdn
+      end
+
+      if mk != nil
+        ts.mat_khau = mk
+      end
+
+      if tt != nil
+        ts.ten_that = tt
+      end
+
+      if em != nil
+        ts.email = em
+      end
+
+      if at != nil
+        ts.active = at
+      end
+
+      ts.save
+
+      return_obj :status => :ok, :id => ts.id
 
     rescue Exception => e
       return_obj :status => :fail, :reason => e.message
