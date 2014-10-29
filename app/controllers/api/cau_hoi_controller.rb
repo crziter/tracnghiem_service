@@ -30,11 +30,12 @@ class Api::CauHoiController < ApplicationController
       @ch.b = ch_json['b']
       @ch.c = ch_json['c']
       @ch.d = ch_json['d']
-      @ch.save
 
       if @ch.noi_dung == nil || @ch.a == nil || @ch.b == nil || @ch.c == nil || @ch.d == nil
         raise 'CauHoi invalid'
       end
+
+      @ch.save
 
       return_obj :status => :ok, :id => @ch.id
     rescue Exception => e
