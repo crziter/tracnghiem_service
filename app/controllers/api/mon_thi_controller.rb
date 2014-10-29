@@ -21,20 +21,29 @@ class Api::MonThiController < ApplicationController
         mt.ten=ten_mon_thi
         mt.save
 
-        return_obj :status => 'Ok', :inserted_id => mt.id
+        return_obj :status => :ok, :id => mt.id
       else
-        return_obj :status => 'Invalid MonThi object'
+        return_obj :status => :fail, :reason => 'invalid MonThi object'
       end
-    rescue
-      return_obj :status => 'Invalid json'
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
     end
   end
 
-  private
-  def return_obj(obj)
-    respond_to do |format|
-      format.json { render json: obj }
-      format.json { render json: obj }
+  def destroy
+    begin
+      mt_id = params[:id]
+      @mt = MonThi.where(id: mt_id).first
+
+      if @mt == nil
+        raise 'Id not found'
+      end
+
+      @mt.destroy
+
+      return_obj :status => :ok, :id => @mt.id
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
     end
   end
 end

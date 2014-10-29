@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  ten_dang_nhap: MyString
+  thoi_gian: 2014-10-29 10:51:37
+
+two:
+  token: MyString
+  ten_dang_nhap: MyString
+  thoi_gian: 2014-10-29 10:51:37

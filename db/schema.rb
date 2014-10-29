@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026174134) do
+ActiveRecord::Schema.define(version: 20141029053324) do
 
   create_table "cau_hois", force: true do |t|
     t.text     "noi_dung"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20141026174134) do
     t.string   "ten"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sign_ins", force: true do |t|
+    t.string   "token"
+    t.string   "ten_dang_nhap"
+    t.datetime "thoi_gian"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "thi_id"
   end
 
   create_table "thi_sinhs", force: true do |t|

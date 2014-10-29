@@ -1,14 +1,23 @@
 class Api::ThiSinhController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-
   def dang_nhap
     ts_json = JSON.parse(request.raw_post)
     @ts = ThiSinh.where(ten_dang_nhap: ts_json['ten_dang_nhap'], mat_khau: ts_json['mat_khau']).first
 
     if @ts == nil
-      return_obj :status => 'fail', :reason => 'invalid information'
+      return_obj :status => :fail, :reason => 'invalid information'
     else
-      return_obj :status => 'ok', :token => SecureRandom.uuid
+      begin
+        token = SecureRandom.uuid
+        si = SignIn.new
+        si.token = token
+        si.ten_dang_nhap = @ts.ten_dang_nhap
+        si.thoi_gian = Time.now
+        si.save
+
+        return_obj :status => :ok, :token => token
+      rescue Exception => e
+        return_obj :status => :fail, :reason => e.message
+      end
     end
   end
 
@@ -18,11 +27,11 @@ class Api::ThiSinhController < ApplicationController
   end
 
   def create
-    ts_json = JSON.parse(request.raw_post);
-    @ts = ThiSinh.new
     @rs = nil
 
     begin
+      ts_json = JSON.parse(request.raw_post);
+      @ts = ThiSinh.new
       @ts.ten_dang_nhap = ts_json['ten_dang_nhap']
       @ts.mat_khau      = ts_json['mat_khau']
       @ts.ten_that      = ts_json['ten_that']
@@ -33,19 +42,11 @@ class Api::ThiSinhController < ApplicationController
       end
 
       @ts.save
-      @rs = { :status => 'ok', :id => @ts.id }
+      @rs = { :status => :ok, :id => @ts.id }
     rescue Exception => e
-      @rs = { :status => 'fail', :reason => e.message }
+      @rs = { :status => :fail, :reason => e.message }
     end
 
     return_obj @rs
-  end
-
-  private
-  def return_obj(obj)
-    respond_to do |format|
-      format.json { render json: obj }
-      format.json { render json: obj }
-    end
   end
 end
