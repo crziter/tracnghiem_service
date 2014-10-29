@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :cau_hoi
     resources :thi
     resources :dap_an
+    resources :ket_qua
 
     post  '/thi_sinh/dang_nhap'   => 'thi_sinh#dang_nhap'
     post  '/thi_sinh/dang_xuat'   => 'thi_sinh#dang_xuat'
