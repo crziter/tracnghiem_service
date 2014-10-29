@@ -1,7 +1,7 @@
 class Api::ThiSinhController < ApplicationController
   def dang_nhap
     ts_json = JSON.parse(request.raw_post)
-    @ts = ThiSinh.where(ten_dang_nhap: ts_json['ten_dang_nhap'], mat_khau: ts_json['mat_khau']).first
+    @ts = ThiSinh.where(ten_dang_nhap: ts_json['ten_dang_nhap'], mat_khau: ts_json['mat_khau'], active: true).first
 
     if @ts == nil
       return_obj :status => :fail, :reason => 'invalid information'
@@ -47,6 +47,12 @@ class Api::ThiSinhController < ApplicationController
 
     begin
       ts_json = JSON.parse(request.raw_post);
+
+      @ts = ThiSinh.where(ten_dang_nhap: ts_json['ten_dang_nhap']).first
+      if @ts != nil
+        raise 'Can\' use ten_dang_nhap: ' + ts_json['ten_dang_nhap']
+      end
+
       @ts = ThiSinh.new
       @ts.ten_dang_nhap = ts_json['ten_dang_nhap']
       @ts.mat_khau      = ts_json['mat_khau']
@@ -64,5 +70,21 @@ class Api::ThiSinhController < ApplicationController
     end
 
     return_obj @rs
+  end
+
+  def destroy
+    begin
+      ts_id = params[:id]
+      ts = ThiSinh.where(id: ts_id).first
+      if ts == nil
+        raise 'ThiSinh not found'
+      end
+
+      ts.active = false
+      ts.save
+
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
   end
 end

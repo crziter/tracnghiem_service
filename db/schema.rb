@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029053324) do
+ActiveRecord::Schema.define(version: 20141029155606) do
 
   create_table "cau_hois", force: true do |t|
     t.text     "noi_dung"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20141029053324) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   create_table "this", force: true do |t|
