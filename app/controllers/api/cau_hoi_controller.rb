@@ -4,6 +4,22 @@ class Api::CauHoiController < ApplicationController
     return_obj @chs
   end
 
+  def destroy
+    begin
+      ch_id = params[:id]
+
+      ch = CauHoi.where(id: ch_id).first
+      if ch == nil
+        raise 'CauHoi not found'
+      end
+
+      ch.destroy
+      return_obj :status => :ok, :id => ch.id
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
+
   def create
     begin
       ch_json = JSON.parse(request.raw_post)
@@ -19,7 +35,7 @@ class Api::CauHoiController < ApplicationController
       if @ch.noi_dung == nil || @ch.a == nil || @ch.b == nil || @ch.c == nil || @ch.d == nil
         raise 'CauHoi invalid'
       end
-      
+
       return_obj :status => :ok, :id => @ch.id
     rescue Exception => e
       return_obj :status => :fail, :reason => e.message
