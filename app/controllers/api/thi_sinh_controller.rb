@@ -60,7 +60,7 @@ class Api::ThiSinhController < ApplicationController
       @ts.email         = ts_json['email']
       @ts.active        = ts_json['active']
 
-      if @ts.ten_dang_nhap == nil || @ts.mat_khau == nil || @ts.ten_that = nil || @ts.email == nil
+      if @ts.ten_dang_nhap == nil || @ts.mat_khau == nil || @ts.ten_that == nil || @ts.email == nil
         raise 'invalid information'
       end
 
