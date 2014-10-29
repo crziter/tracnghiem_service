@@ -84,6 +84,7 @@ class Api::ThiSinhController < ApplicationController
       ts.active = false
       ts.save
 
+      return_obj :status => :ok
     rescue Exception => e
       return_obj :status => :fail, :reason => e.message
     end
