@@ -4,6 +4,7 @@ class Api::CauHoiController < ApplicationController
     return_obj @chs
   end
 
+  # Trả về id mới xóa nếu thành công
   def destroy
     begin
       ch_id = params[:id]
@@ -20,6 +21,7 @@ class Api::CauHoiController < ApplicationController
     end
   end
 
+  # Trả về id câu hỏi mới tạo
   def create
     begin
       ch_json = JSON.parse(request.raw_post)
@@ -43,6 +45,7 @@ class Api::CauHoiController < ApplicationController
     end
   end
 
+  # Trả về các câu hỏi theo mã đề thi
   def list_by_de_thi
     begin
       dt_id = params[:id]

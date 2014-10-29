@@ -1,6 +1,4 @@
 class Api::DeThiController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-
   def index
     @dts = DeThi.all
     return_obj @dts

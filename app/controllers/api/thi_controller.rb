@@ -1,4 +1,7 @@
 class Api::ThiController < ApplicationController
+
+  # Trả về id của đối tượng Thi
+  # Cần: Mã đề thi, token khi đăng nhập
   def bat_dau_thi
     begin
       json_obj = JSON.parse(request.raw_post)
@@ -33,6 +36,8 @@ class Api::ThiController < ApplicationController
     end
   end
 
+  # Cần token và danh sách các câu hỏi + đáp án
+  # theo mẫu "cau_hoi_id": "dap_an"
   def thi_xong
     begin
       obj = JSON.parse(request.raw_post)
@@ -57,7 +62,7 @@ class Api::ThiController < ApplicationController
           dap_an = 0
           cau_hoi = ch.cau_hoi
           obj.each do |k, v|
-            if k.to_i == cau_hoi.id
+            if k != 'token' &&  k.to_i == cau_hoi.id
               dap_an = v.to_i
               break
             end
@@ -84,6 +89,7 @@ class Api::ThiController < ApplicationController
     end
   end
 
+  # Cần thi_id nhận được khi request đến thi_xong
   def diem
     begin
       diem = 0
@@ -110,6 +116,7 @@ class Api::ThiController < ApplicationController
     end
   end
 
+  # Cần thi_id nhận được khi request đến thi_xong
   def check_result
     begin
       thi_id = params[:id]

@@ -1,6 +1,4 @@
 class Api::MonThiController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-
   def index
     @mon_thi = MonThi.all
 
