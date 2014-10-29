@@ -75,6 +75,9 @@ class Api::ThiController < ApplicationController
         end
       end
 
+      usr.thi_id = nil
+      usr.save
+
       return_obj :status => :ok, :id => thi.id
     rescue Exception => e
       return_obj :status => :fail, :reason => e.message
