@@ -44,4 +44,25 @@ class Api::MonThiController < ApplicationController
       return_obj :status => :fail, :reason => e.message
     end
   end
+
+  def update
+    begin
+      mt_id = params[:id]
+      mt = MonThi.where(id: mt_id).first
+
+      if mt == nil
+        raise 'MonThi not found'
+      end
+
+      mt_json = JSON.parse(request.raw_post)
+      if mt_json['ten'] != nil
+        mt.ten = mt_json['ten']
+      end
+      mt.save
+
+      return_obj :status => :ok, :id => mt.id
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
 end
