@@ -27,7 +27,7 @@ class Api::CauHoiController < ApplicationController
       ch_json = JSON.parse(request.raw_post)
 
       # Check dap_an validated
-      da = ch_json['dap_an'].to_i
+      da = ch_json['da'].to_i
 
       if da < 1 || da > 4
         raise 'dap_an invalid'
@@ -75,7 +75,7 @@ class Api::CauHoiController < ApplicationController
       ch_json = JSON.parse(request.raw_post)
 
       # Check dap_an validated
-      da = ch_json['dap_an']
+      da = ch_json['da']
 
       if da != nil
         if da.to_i < 1 || da.to_i > 4
