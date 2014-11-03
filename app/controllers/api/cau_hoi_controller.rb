@@ -107,7 +107,7 @@ class Api::CauHoiController < ApplicationController
       @ch.save
 
       if da != nil
-        da_tmp = DapAn.where(cau_hoi_id: obj['cau_hoi_id']).first
+        da_tmp = DapAn.where(cau_hoi_id: ch_json['cau_hoi_id']).first
         dpa = nil
         if da_tmp == nil
           dpa = DapAn.new
