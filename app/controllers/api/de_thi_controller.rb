@@ -62,4 +62,21 @@ class Api::DeThiController < ApplicationController
       return_obj :status => :fail, :reason => e.message
     end
   end
+
+  def delete_cau_hoi
+    begin
+      dt_id = params[:dt_id]
+      ch_id = params[:ch_id]
+
+      dtch = DeThiCauHoi.where(de_thi_id: dt_id, cau_hoi_id: ch_id).first
+      if dtch == nil
+        raise 'DeThi or CauHoi not found'
+      end
+
+      dtch.destroy
+      return_obj :status => :ok
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
 end

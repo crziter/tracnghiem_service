@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     # { "dcau_hoi_ide_thi_id": "id", "": "id" }
     post  '/de_thi/add_cau_hoi'   => 'de_thi#add_cau_hoi'
+    delete '/de_thi/:dt_id/:ch_id' => 'de_thi#delete_cau_hoi'
 
     get   '/cau_hoi/:id/list'     => 'cau_hoi#list_by_de_thi'
     get   '/cau_hoi/:id/list_with_da' => 'cau_hoi#list_with_da'
