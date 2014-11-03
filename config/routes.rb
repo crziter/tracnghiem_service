@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post  '/de_thi/add_cau_hoi'   => 'de_thi#add_cau_hoi'
 
     get   '/cau_hoi/:id/list'     => 'cau_hoi#list_by_de_thi'
+    get   '/cau_hoi/:id/list_with_da' => 'cau_hoi#list_with_da'
 
     post '/thi/begin'             => 'thi#bat_dau_thi'
     post '/thi/end'               => 'thi#thi_xong'
