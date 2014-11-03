@@ -2,6 +2,15 @@ class Api::DapAnController < ApplicationController
   def create
     begin
       obj = JSON.parse(request.raw_post)
+
+      da_tmp = DapAn.where(cau_hoi_id: obj['cau_hoi_id']).first
+      dpa = nil
+      if da_tmp == nil
+        dpa = DapAn.new
+      else
+        dpa = da_tmp
+      end
+
       da = obj['dap_an'].to_i
 
       if da < 1 || da > 4
@@ -13,7 +22,6 @@ class Api::DapAnController < ApplicationController
         raise 'CauHoi not found'
       end
 
-      dpa = DapAn.new
       dpa.cau_hoi = ch
       dpa.dap_an = da
       dpa.save
