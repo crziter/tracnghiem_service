@@ -22,6 +22,25 @@ class Api::DeThiController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      dt_id = params[:id]
+      dt = DeThi.where(id: dt_id).first
+      if dt == nil
+        raise 'DeThi not found'
+      end
+
+      dt.lst_de_thi_cau_hoi.each do |dtch|
+        dtch.destroy
+      end
+
+      dt.destroy
+      return_obj :status => :ok
+    rescue Exception => e
+      return_obj :status => :fail, :reason => e.message
+    end
+  end
+
   def list_by_mon_thi
     begin
       mt_id = params[:id]

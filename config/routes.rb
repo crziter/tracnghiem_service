@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post  '/thi_sinh/dang_xuat'   => 'thi_sinh#dang_xuat'
 
     get   '/de_thi/:id/list'      => 'de_thi#list_by_mon_thi'
+    delete '/de_thi/:id'          => 'de_thi#destroy'
 
     # { "dcau_hoi_ide_thi_id": "id", "": "id" }
     post  '/de_thi/add_cau_hoi'   => 'de_thi#add_cau_hoi'
